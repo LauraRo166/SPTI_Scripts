@@ -48,3 +48,11 @@ cat txt_lines_report.txt
 ````bash
 cat /home/txt_lines_report.txt
 ````
+
+## Otras ejemplos de ejecución
+Uso del script mejorado:
+````bash
+bash./count_txt_lines_advanced.sh                    # Busca en $HOME
+./count_txt_lines_advanced.sh /etc               # Busca en /etc
+./count_txt_lines_advanced.sh /var/log mi_reporte.txt  # Personalizado
+````
