@@ -1,27 +1,25 @@
 #!/bin/bash
 
-# Script para encontrar archivos .txt en el directorio home
-# Cuenta las líneas de cada archivo y las ordena por número de líneas
+# Script to find .txt files in the home directory
+# Counts the lines in each file and sorts them by line count
 
-echo "Buscando archivos .txt en el directorio home..."
+echo "Searching for .txt files in the home directory..."
 echo "=============================================="
-
-# Array temporal para almacenar resultados
+# Temporary array to store results
 declare -a results
 
-# Buscar todos los archivos .txt en el directorio home
+# Search for all .txt files in the home directory
 while IFS= read -r -d '' file; do
-    # Contar líneas del archivo
+    # Count lines in the file
     lines=$(wc -l < "$file" 2>/dev/null)
-    
-    # Almacenar resultado en formato "líneas|archivo"
+    # Store result
     results+=("$lines|$file")
 done < <(find "$HOME" -type f -name "*.txt" -print0 2>/dev/null)
 
-# Ordenar resultados por número de líneas (descendente) y mostrar
+# Sort results by number of lines and display
 printf '%s\n' "${results[@]}" | sort -t'|' -k1 -nr | while IFS='|' read -r lines file; do
     printf "%6d líneas: %s\n" "$lines" "$file"
 done
 
 echo "=============================================="
-echo "Búsqueda completada"
+echo "Search complete"
